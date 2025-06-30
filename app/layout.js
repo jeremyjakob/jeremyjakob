@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
+import Preloader from "@/components/preloader";
 // font
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} ${inter.variable} antialiased bg-[#fdfcfa]`}
       >
         <Header />
-        {children}
+        <Preloader>{children} </Preloader>
         <Footer />
       </body>
     </html>

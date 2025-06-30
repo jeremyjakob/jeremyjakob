@@ -7,13 +7,18 @@
   font-style: normal;
 }
 
+/* prevents navbar from shifting */
+html {
+  overflow-y: scroll;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
 }
 
-/* Create four equal columns that sits next to each other */
+/* Create 2 equal columns that sits next to each other */
 .column {
   flex: 25%;
   max-width: 25%;
@@ -26,7 +31,7 @@
   width: 100%;
 }
 
-/* Responsive layout - makes a two column-layout instead of four columns */
+/* Responsive layout - makes a 1 column-layout instead of 2 columns */
 @media screen and (max-width: 800px) {
   .column {
     flex: 50%;
