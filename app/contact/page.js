@@ -12,7 +12,7 @@ export default function Contact() {
   return (
     <section className="">
       <div className="flex items-center justify-center font-medium text-3xl mt-40">
-        Let's work together.
+        <p>{`Let's talk about your next project!`}</p>
       </div>
       <p className="flex items-center justify-center text-gray-700 mt-5">
         Please reach out through this form:
