@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import concert from "@/public/images/jj2.jpg";
+import styles from "./page.module.css";
 import { sendEmail } from "@/api/sendEmail";
 import SubmitBtn from "@/components/submit";
 
@@ -26,44 +29,64 @@ export default function Contact() {
   }
 
   return (
-    <main className="mx-auto mt-20 mb-24 w-full max-w-lg px-6 sm:mt-32">
-      <h1 className="text-center text-3xl font-medium leading-tight text-slate-950">
-        Let’s talk about your next project.
-      </h1>
-      <p className="mt-5 text-center leading-relaxed text-gray-700">
-        Send a note about what you have in mind.
-      </p>
-      <form className="mt-10 flex flex-col" action={submitMessage}>
-        <label htmlFor="senderEmail" className="mb-2 text-sm font-medium text-slate-950">Your email</label>
-        <input
-          id="senderEmail"
-          className="h-14 w-full rounded-lg border border-gray-300 bg-gray-50 p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
-          name="senderEmail"
-          type="email"
-          autoComplete="email"
-          required
-          maxLength={254}
-          value={senderEmail}
-          onChange={(event) => setSenderEmail(event.target.value)}
-        />
-        <label htmlFor="message" className="mt-6 mb-2 text-sm font-medium text-slate-950">Your message</label>
-        <textarea
-          id="message"
-          className="min-h-48 w-full rounded-lg border border-gray-300 p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
-          name="message"
-          required
-          maxLength={5000}
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-        />
-        <div aria-live="polite" aria-atomic="true" className="mt-4 text-sm leading-relaxed">
-          {status && <p className={status.error ? "text-red-800" : "text-green-800"}>{status.text}</p>}
-        </div>
-        <div className="mt-5 flex justify-center"><SubmitBtn /></div>
-      </form>
-      <p className="mt-8 text-center text-sm leading-relaxed text-gray-700">
-        Prefer email? <a className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4" href="mailto:Jeremyjakob31@gmail.com">Jeremyjakob31@gmail.com</a>
-      </p>
+    <main className={styles.contact}>
+      <header className={styles.intro}>
+        <p className={styles.eyebrow}>Jeremy Jakob / Contact</p>
+        <h1>Let’s make<br />something<span aria-hidden="true">.</span></h1>
+        <p className={styles.description}>Concerts, events, or something a little different.<br />Tell me what you have in mind.</p>
+      </header>
+      <div className={styles.layout}>
+        <figure className={styles.photograph}>
+          <Image
+            src={concert}
+            alt="A musician singing into a microphone and playing guitar under stage lights, photographed in black and white."
+            sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1128px) calc((100vw - 160px) / 2), 484px"
+            quality={85}
+            priority
+            className={styles.image}
+          />
+          <figcaption><span>Concert photography</span><span>Jeremy Jakob</span></figcaption>
+        </figure>
+        <section className={styles.formSection} aria-labelledby="form-heading">
+          <div className={styles.formHeading}>
+            <h2 id="form-heading">Start a conversation</h2>
+            <p>A few details are a good place to start.</p>
+          </div>
+          <form className={styles.form} action={submitMessage}>
+            <label htmlFor="senderEmail">Your email</label>
+            <input
+              id="senderEmail"
+              name="senderEmail"
+              type="email"
+              autoComplete="email"
+              placeholder="you@example.com"
+              required
+              maxLength={254}
+              value={senderEmail}
+              onChange={(event) => setSenderEmail(event.target.value)}
+            />
+            <label htmlFor="message" className={styles.messageLabel}>What do you have in mind?</label>
+            <p id="message-hint" className={styles.hint}>A show, a date, a place, an idea. Whatever you know so far.</p>
+            <textarea
+              id="message"
+              name="message"
+              aria-describedby="message-hint"
+              required
+              maxLength={5000}
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+            />
+            <div aria-live="polite" aria-atomic="true" className={styles.status}>
+              {status && <p className={status.error ? styles.error : styles.success}>{status.text}</p>}
+            </div>
+            <SubmitBtn />
+          </form>
+          <div className={styles.directEmail}>
+            <p>Prefer to write directly?</p>
+            <a href="mailto:jeremyjakob31@gmail.com">jeremyjakob31@gmail.com <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
