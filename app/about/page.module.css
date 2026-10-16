@@ -1,0 +1,33 @@
+.about { width: min(1032px, calc(100% - 96px)); margin: 96px auto 112px; color: #181b20; }
+.intro { margin-bottom: 56px; }
+.eyebrow, .smallLabel { color: #5b5b58; font-size: 11px; font-weight: 500; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; }
+.eyebrow { margin: 0 0 24px; }
+.intro h1 { margin: 0; font-size: clamp(56px, 7.5vw, 88px); font-weight: 500; line-height: 1.02; letter-spacing: -.065em; }
+.intro h1 span { color: #77776f; }
+.layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.portrait { margin: 0; }
+.image { display: block; width: 100%; height: auto; border-radius: 3px; }
+.portrait figcaption { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; color: #66665e; font-size: 11px; line-height: 1.6; }
+.biography { padding-top: 24px; border-top: 1px solid #d8d7d1; }
+.smallLabel { margin: 0 0 24px; }
+.biography h2 { margin: 0; font-size: clamp(28px, 3vw, 36px); font-weight: 400; letter-spacing: -.045em; line-height: 1.25; }
+.lead { margin: 14px 0 0; color: #41443d; font-size: 18px; line-height: 1.65; }
+.description { margin: 24px 0 0; max-width: 410px; color: #5b5b58; font-size: 14px; line-height: 1.9; }
+.details { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid #d8d7d1; }
+.details > div { display: grid; grid-template-columns: 82px 1fr; gap: 16px; margin-bottom: 12px; font-size: 12px; line-height: 1.7; }
+.details dt { color: #66665e; }
+.details dd { margin: 0; }
+.links { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; margin-top: 36px; }
+.primaryLink, .secondaryLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; max-width: 100%; font-size: 13px; line-height: 1.7; text-decoration: none; }
+.primaryLink { background: #262923; color: #fdfcfa; border: 1px solid #262923; border-radius: 4px; padding: 14px 18px; }
+.primaryLink:hover { background: #41463b; }
+.secondaryLink { padding-bottom: 4px; border-bottom: 1px solid #8e8e82; }
+.secondaryLink:hover { text-decoration: underline; text-underline-offset: 5px; }
+.primaryLink:focus-visible, .secondaryLink:focus-visible { outline: 2px solid #53564c; outline-offset: 5px; }
+@media (max-width: 900px) { .layout { gap: 36px; } }
+@media (max-width: 700px) {
+  .about { width: calc(100% - 40px); margin-top: 64px; margin-bottom: 80px; }
+  .intro { margin-bottom: 36px; }
+  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .biography { padding-top: 24px; }
+}
