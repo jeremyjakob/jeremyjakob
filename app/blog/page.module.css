@@ -1,0 +1,82 @@
+.blog {
+  width: min(1032px, calc(100% - 96px));
+  margin: 104px auto 112px;
+  color: #181b20;
+}
+
+.intro { max-width: 680px; margin-bottom: 48px; }
+.eyebrow {
+  margin: 0 0 24px;
+  color: #5b5b58;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.intro h1 {
+  margin: 0 0 24px;
+  font-size: clamp(64px, 9vw, 108px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+}
+.intro h1 span { color: #77776f; }
+.description {
+  max-width: 380px;
+  color: #5b5b58;
+  font-size: 17px;
+  line-height: 1.7;
+}
+.photograph { margin: 0; }
+.image { display: block; width: 100%; height: auto; border-radius: 3px; }
+.photograph figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  color: #66665e;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.entries { margin-top: 72px; border-top: 1px solid #d8d7d1; }
+.sectionHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+}
+.sectionHeading h2 { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.6; }
+.sectionHeading > span { color: #66665e; font-size: 11px; line-height: 1.6; }
+.emptyState { max-width: 480px; padding: 52px 0 24px; }
+.emptyTitle {
+  margin: 0 0 14px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+}
+.emptyState > p:not(.emptyTitle) { margin: 0; color: #5b5b58; font-size: 14px; line-height: 1.9; }
+.portfolioLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #8e8e82;
+  font-size: 13px;
+  line-height: 1.6;
+  text-decoration: none;
+  text-underline-offset: 5px;
+}
+.portfolioLink:hover { text-decoration: underline; }
+.portfolioLink:focus-visible { outline: 2px solid #181b20; outline-offset: 6px; }
+@media (max-width: 768px) {
+  .blog { width: calc(100% - 40px); margin-top: 72px; margin-bottom: 80px; }
+  .intro { margin-bottom: 32px; }
+  .description { max-width: 300px; font-size: 15px; }
+  .entries { margin-top: 48px; }
+  .sectionHeading { flex-wrap: wrap; gap: 6px 20px; }
+  .emptyState { padding-top: 36px; }
+}
