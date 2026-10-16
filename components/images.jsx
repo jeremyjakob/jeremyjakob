@@ -41,11 +41,7 @@ export default function Images() {
   }
 
   return (
-    <section aria-labelledby="work-heading">
-      <div className={styles.galleryHeading}>
-        <h2 id="work-heading">Selected photographs</h2>
-        <p>Select a photograph to view larger <span aria-hidden="true">↗</span></p>
-      </div>
+    <section aria-label="Selected photographs">
       <div className={styles.gallery}>
         {gallery.map((item, index) => (
           <button
