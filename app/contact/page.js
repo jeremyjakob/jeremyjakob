@@ -1,53 +1,69 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { sendEmail } from "@/api/sendEmail";
 import SubmitBtn from "@/components/submit";
-import toast from "react-hot-toast";
-import image2 from "@/public/images/jj2.jpg";
-import image3 from "@/public/images/jj3.jpg";
-import Image from "next/image";
 
 export default function Contact() {
-  return (
-    <section className="">
-      <div className="flex items-center justify-center font-medium text-3xl mt-40">
-        <p>{`Let's talk about your next project!`}</p>
-      </div>
-      <p className="flex items-center justify-center text-gray-700 mt-5">
-        Please reach out through this form:
-      </p>
+  const [senderEmail, setSenderEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState(null);
 
-      <form
-        className="mt-10 flex flex-col items-center"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-          if (error) {
-            toast.error(error);
-            return;
-          }
-          toast.success("Email sent successfully");
-        }}
-      >
+  async function submitMessage(formData) {
+    setStatus(null);
+    try {
+      const result = await sendEmail(formData);
+      if (!result.success) {
+        setStatus({ error: true, text: result.error || "Your message could not be sent. Please email Jeremy directly below." });
+        return;
+      }
+      setSenderEmail("");
+      setMessage("");
+      setStatus({ error: false, text: "Thank you. Your message has been sent to Jeremy." });
+    } catch {
+      setStatus({ error: true, text: "Your message could not be sent. Please try again or email Jeremy directly below." });
+    }
+  }
+
+  return (
+    <main className="mx-auto mt-20 mb-24 w-full max-w-lg px-6 sm:mt-32">
+      <h1 className="text-center text-3xl font-medium leading-tight text-slate-950">
+        Let’s talk about your next project.
+      </h1>
+      <p className="mt-5 text-center leading-relaxed text-gray-700">
+        Send a note about what you have in mind.
+      </p>
+      <form className="mt-10 flex flex-col" action={submitMessage}>
+        <label htmlFor="senderEmail" className="mb-2 text-sm font-medium text-slate-950">Your email</label>
         <input
-          className="h-15 w-100 p-4 rounded-lg border border-gray-400/[0.3] bg-gray-50"
+          id="senderEmail"
+          className="h-14 w-full rounded-lg border border-gray-300 bg-gray-50 p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
           name="senderEmail"
           type="email"
+          autoComplete="email"
           required
-          maxLength={100}
-          placeholder="Your email"
+          maxLength={254}
+          value={senderEmail}
+          onChange={(event) => setSenderEmail(event.target.value)}
         />
+        <label htmlFor="message" className="mt-6 mb-2 text-sm font-medium text-slate-950">Your message</label>
         <textarea
-          className="h-50 w-100 my-3 rounded-lg border border-gray-400/[0.3] p-4 mb-5"
+          id="message"
+          className="min-h-48 w-full rounded-lg border border-gray-300 p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
           name="message"
           required
           maxLength={5000}
-          placeholder="Your message"
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
         />
-        <div className="flex items-center justify-center mb-34">
-          <SubmitBtn />
+        <div aria-live="polite" aria-atomic="true" className="mt-4 text-sm leading-relaxed">
+          {status && <p className={status.error ? "text-red-800" : "text-green-800"}>{status.text}</p>}
         </div>
+        <div className="mt-5 flex justify-center"><SubmitBtn /></div>
       </form>
-    </section>
+      <p className="mt-8 text-center text-sm leading-relaxed text-gray-700">
+        Prefer email? <a className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4" href="mailto:Jeremyjakob31@gmail.com">Jeremyjakob31@gmail.com</a>
+      </p>
+    </main>
   );
 }
