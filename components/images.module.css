@@ -27,9 +27,9 @@
 .controls button:hover, .closeButton:hover { background: #30332c; }
 .viewer button:focus-visible { outline: 2px solid #fdfcfa; outline-offset: 4px; }
 @media (max-width: 650px) {
-  .gallery { columns: 1; }
-  .photoButton { margin-bottom: 20px; }
-  .enlarge { opacity: 1; }
+  .gallery { columns: 2; column-gap: 10px; }
+  .photoButton { margin-bottom: 10px; }
+  .enlarge { opacity: 1; font-size: 9px; padding: 4px 6px; right: 6px; bottom: 6px; }
   .viewer { padding: 12px 16px max(16px, env(safe-area-inset-bottom)); }
   .viewerContent { gap: 12px; }
   .viewerHeader p { max-width: 170px; }

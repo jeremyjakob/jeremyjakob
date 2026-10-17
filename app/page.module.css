@@ -5,3 +5,13 @@
 .intro h1 span { color: #77776f; }
 @media (max-width: 800px) { .intro { flex-direction: column; align-items: flex-start; gap: 18px; } }
 @media (max-width: 650px) { .home { width: calc(100% - 40px); margin: 56px auto 72px; } .intro { margin-bottom: 36px; } }
+
+.collections { margin-top: 72px; padding-top: 24px; border-top: 1px solid #d8d7d1; }
+.collections h2 { margin: 0 0 24px; font-size: 24px; font-weight: 400; letter-spacing: -.035em; }
+.collectionGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.collectionLink { display: block; color: inherit; text-decoration: none; }
+.collectionCover { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+.collectionLink > span { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; line-height: 1.7; }
+.collectionLink:hover > span { text-decoration: underline; text-underline-offset: 4px; }
+.collectionLink:focus-visible { outline: 2px solid #53564c; outline-offset: 5px; }
+@media (max-width: 650px) { .collections { margin-top: 48px; } .collectionGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 10px; } }

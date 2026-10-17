@@ -1,0 +1,11 @@
+.page { width: min(1120px, calc(100% - 96px)); margin: 64px auto 96px; color: #181b20; }
+.back { display: inline-block; color: #5b5b58; font-size: 12px; text-decoration: underline; text-underline-offset: 5px; }
+.intro { margin: 40px 0 48px; }
+.eyebrow { margin: 0 0 20px; color: #5b5b58; font-size: 11px; font-weight: 500; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; }
+.intro h1 { margin: 0; font-size: clamp(40px, 6vw, 76px); font-weight: 500; line-height: 1.1; letter-spacing: -.055em; }
+.intro h1 span { color: #77776f; }
+.description { margin: 24px 0 0; color: #5b5b58; font-size: 15px; line-height: 1.8; }
+.otherCollections { display: flex; flex-wrap: wrap; gap: 20px 32px; margin-top: 48px; padding-top: 24px; border-top: 1px solid #d8d7d1; }
+.otherCollections a { font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
+.back:focus-visible, .otherCollections a:focus-visible { outline: 2px solid #53564c; outline-offset: 5px; }
+@media (max-width: 650px) { .page { width: calc(100% - 40px); margin: 48px auto 72px; } .intro { margin: 36px 0; } }

@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { gallery } from "@/lib/data";
+import { gallery as concertGallery } from "@/lib/data";
 import styles from "./images.module.css";
 
-export default function Images() {
+export default function Images({ items = concertGallery, title = "Selected photographs" }) {
+  const gallery = items;
   const [activeIndex, setActiveIndex] = useState(null);
   const [zoomed, setZoomed] = useState(false);
   const dialogRef = useRef(null);
@@ -41,7 +42,7 @@ export default function Images() {
   }
 
   return (
-    <section aria-label="Selected photographs">
+    <section aria-label={title}>
       <div className={styles.gallery}>
         {gallery.map((item, index) => (
           <button
@@ -55,7 +56,7 @@ export default function Images() {
             <Image
               src={item.imageUrl}
               alt={item.description}
-              sizes="(max-width: 650px) calc(100vw - 40px), (max-width: 1216px) calc((100vw - 120px) / 2), 548px"
+              sizes="(max-width: 650px) calc((100vw - 50px) / 2), (max-width: 1216px) calc((100vw - 120px) / 2), 548px"
               quality={85}
               priority={index === 0}
               className={styles.thumbnail}
@@ -93,7 +94,7 @@ export default function Images() {
         {isOpen && (
           <div className={styles.viewerContent}>
             <div className={styles.viewerHeader}>
-              <p>Jeremy Jakob / Selected photographs</p>
+              <p>Jeremy Jakob / {title}</p>
               <div className={styles.viewerActions}>
                 <button type="button" className={styles.zoomButton} aria-pressed={zoomed} onClick={() => setZoomed((current) => !current)}>{zoomed ? "Zoom out" : "Zoom in"}</button>
                 <button type="button" onClick={close} className={styles.closeButton} aria-label="Close photograph viewer">Close <span aria-hidden="true">×</span></button>
