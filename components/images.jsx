@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { gallery as concertGallery } from "@/lib/data";
 import styles from "./images.module.css";
 
-export default function Images({ items = concertGallery, title = "Selected photographs" }) {
+export default function Images({ items = concertGallery, title = "Selected photographs", priorityFirst = true }) {
   const gallery = items;
+  const captionId = useId();
   const [activeIndex, setActiveIndex] = useState(null);
   const [zoomed, setZoomed] = useState(false);
   const dialogRef = useRef(null);
@@ -58,10 +59,9 @@ export default function Images({ items = concertGallery, title = "Selected photo
               alt={item.description}
               sizes="(max-width: 650px) calc((100vw - 50px) / 2), (max-width: 1216px) calc((100vw - 120px) / 2), 548px"
               quality={85}
-              priority={index === 0}
+              priority={priorityFirst && index === 0}
               className={styles.thumbnail}
             />
-            <span className={styles.enlarge} aria-hidden="true">View larger ↗</span>
           </button>
         ))}
       </div>
@@ -69,7 +69,7 @@ export default function Images({ items = concertGallery, title = "Selected photo
         ref={dialogRef}
         className={styles.viewer}
         aria-label="Photograph viewer"
-        aria-describedby="viewer-caption"
+        aria-describedby={captionId}
         onClose={() => setActiveIndex(null)}
         onKeyDown={(event) => {
           if (event.key === "Tab") {
@@ -130,7 +130,7 @@ export default function Images({ items = concertGallery, title = "Selected photo
               </div>
             </div>
             <div className={styles.viewerFooter}>
-              <p id="viewer-caption" className={styles.caption}>{selected.description}</p>
+              <p id={captionId} className={styles.caption}>{selected.description}</p>
               <div className={styles.controls}>
                 <button type="button" onClick={() => move(-1)} aria-label="Previous photograph">←</button>
                 <span aria-live="polite" aria-atomic="true">{activeIndex + 1} / {gallery.length}</span>
